@@ -30,10 +30,13 @@
 			throw new PDOException($e->getMessage(), (int)$e->getCode());
 		}
 
+		$nom = "evaM";
+		$id = 2;
+
 		$stmt = $pdo -> query("SELECT * FROM status
 							   JOIN users
 							   ON  users.status_id = status.id
-							   ORDER BY username ASC");
+							   WHERE status_id='$id' AND username='$nom' ");
 
 		/* On affiche le tableau */
 		echo "<table>";
