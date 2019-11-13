@@ -30,16 +30,27 @@
 			throw new PDOException($e->getMessage(), (int)$e->getCode());
 		}
 
-		$stmt = $pdo -> query("SELECT * FROM users
-							   JOIN status
-							   ON  status.id = users.status_id
+		$stmt = $pdo -> query("SELECT * FROM status
+							   JOIN users
+							   ON  users.status_id = status.id
 							   ORDER BY username ASC");
 
 		/* On affiche le tableau */
 		echo "<table>";
+
+		echo "<tr>";
+
+		echo "<td><strong>Id</strong></td>";
+		echo "<td><strong>Username</strong></td>";
+		echo "<td><strong>Email</strong></td>";
+		echo "<td><strong>Status</strong></td>";
+
+		echo "</tr>";
+
 		while ($row =$stmt ->fetch()) {
 			echo "<tr>";
 
+			echo "<td>". $row['id'] . "</td>";
 			echo "<td>". $row['username'] . "</td>";
 			echo "<td>". $row['email'] . "</td>";
 			echo "<td>". $row['name'] . "</td>";
