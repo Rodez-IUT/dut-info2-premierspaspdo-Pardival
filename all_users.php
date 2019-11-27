@@ -63,14 +63,27 @@
 			$stmt->execute([$id, $nom]);
 
 			while ($row =$stmt ->fetch()) {
-				echo "<tr>";
 
-				echo "<td>". $row['id'] . "</td>";
-				echo "<td>". $row['username'] . "</td>";
-				echo "<td>". $row['email'] . "</td>";
-				echo "<td>". $row['name'] . "</td>";
+				if ($row['status_id'] != 3) {
+					echo "<tr>";
 
-				echo "</tr>";
+					echo "<td>". $row['id'] . "</td>";
+					echo "<td>". $row['username'] . "</td>";
+					echo "<td>". $row['email'] . "</td>";
+					echo "<td>". $row['name'] . "</td>";
+					echo "<td>". "<a href='all_user.php?status_id=3&user_id=". $row['id'] ."&action=askDeletion'>Ask Deletion</a>" . "</td>";
+
+					echo "</tr>";
+				} else {
+					echo "<tr>";
+
+					echo "<td>". $row['id'] . "</td>";
+					echo "<td>". $row['username'] . "</td>";
+					echo "<td>". $row['email'] . "</td>";
+					echo "<td>". $row['name'] . "</td>";
+
+					echo "</tr>";
+				}
 			}
 		}
 		
