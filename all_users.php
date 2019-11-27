@@ -21,7 +21,7 @@
 	<?php
 
 		$host = 'localhost';	// le serveur ou la bd est stocké
-		$db   = 'my_activities';	// la bd
+		$db   = 'my-activities';	// la bd
 		$user = 'root';		// car on est en local
 		$pass = 'root';		// car on est en local
 		$charset = 'utf8';	// encodage
@@ -52,13 +52,14 @@
 		echo "</tr>";
 
 		if (isset($_POST['send'])) {
-			$nom = $_POST['lettre'];
+			$nom = $_POST['lettre'].'%';
 			$id = $_POST['status'];
 
-			$stmt = $pdo -> query("SELECT * FROM status
+			$stmt = $pdo -> prepare("SELECT * FROM status
 								   JOIN users
 								   ON  users.status_id = status.id
-								   WHERE status_id='$id' AND username LIKE'$nom%' ");
+								   WHERE status_id= ? AND username LIKE ? ");
+			$stmt->execute([$id, $nom]);
 
 			while ($row =$stmt ->fetch()) {
 				echo "<tr>";
