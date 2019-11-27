@@ -11,6 +11,7 @@
 		<select name="status">
 			<option value="2">Active account</option>
 			<option value="1">Waiting for account validation</option>
+			<option value="3">Waiting fo account deletion</option>
 		</select>
 
 		<input type="submit" name="send" value="OK">
